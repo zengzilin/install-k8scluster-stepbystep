@@ -10,3 +10,10 @@ node2节点地址：192.168.0.213
 关闭防火墙：
 systemctl stop firewalled
 systemctl disable firewalled
+
+3.设置 k8s01-master 的 root 账户可以无密码登录所有节点：
+
+ssh-keygen -t rsa
+ssh-copy-id root@k8s-master
+ssh-copy-id root@k8s-node01
+ssh-copy-id root@k8s-node02
