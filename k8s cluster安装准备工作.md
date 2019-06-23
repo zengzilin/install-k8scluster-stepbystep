@@ -5,7 +5,7 @@ node2节点地址：192.168.0.213
 # 2.其他准备工作
 - 2.1三个节点都安装 Docker version 18.09.6
 - 2.2关闭 selinux：
-修改/etc/selinux/config文件中的SELINUX=
+修改/etc/selinux/config文件中的SELINUX= xxx
 ```
 SELINUX=disabled
 ```
@@ -18,7 +18,7 @@ setenforce 0
 systemctl stop firewalled
 systemctl disable firewalled
 ```
-# 3.设置 k8s01-master 的 root 账户可以无密码登录所有节点：
+# 3.设置 k8s01-master 实现无密码登录所有node
 ```
 ssh-keygen -t rsa
 ssh-copy-id root@k8s-master
