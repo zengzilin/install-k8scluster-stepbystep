@@ -7,7 +7,7 @@ node2节点地址：192.168.0.213
 - 2.2关闭 selinux：
 修改/etc/selinux/config文件中的SELINUX= xxx
 ```
-SELINUX=disabled
+sed -i 's/^SELINUX=.*/SELINUX=disabled/' /etc/selinux/config
 ```
 不重启系统生效，使用命令:
 ```
