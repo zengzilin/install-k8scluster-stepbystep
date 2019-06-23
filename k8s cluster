@@ -1,0 +1,12 @@
+1.环境准备 3台 centos 服务器
+master节点地址：192.168.0.211
+node1节点地址：192.168.0.212
+node2节点地址：192.168.0.213
+2.其他准备工作
+2.1三个节点都安装 Docker version 18.09.6
+2.2关闭 selinux：
+修改/etc/selinux/config文件中的SELINUX="" 为 disabled。
+不重启系统生效，使用命令setenforce 0
+关闭防火墙：
+systemctl stop firewalled
+systemctl disable firewalled
