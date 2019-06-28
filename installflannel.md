@@ -48,9 +48,11 @@ WantedBy=multi-user.target
 ```
 [root@k8s-master system]# systemctl daemon-reload
 ```
-# 配置flannel子网
+# 配置flannel子网并启动 flannel
 ```
 [root@k8s-master ssl]# /usr/bin/etcdctl --ca-file=ca.pem --cert-file=server.pem --key-file=server-key.pem --endpoints="http://192.168.0.211:2379,http://192.168.0.212:2379,http://192.168.0.213:2379" set /coreos/network/config '{ "Network": "172.17.0.0/16", "Backend":{"Type": "vxlan"}}'
+
+ystemctl start flanneld
 ```
 # 重启docker
 ```
