@@ -40,6 +40,7 @@ export BOOTSTRAP_TOKEN=$(head -c 16 /dev/urandom | od -An -t x | tr -d ' ')
 [root@k8s-master ssl]# kubectl config use-context default --kubeconfig=bootstrap.kubeconfig
 ```
 # 创建kube-proxy kubeconfig
+
 ```
 [root@k8s-master ssl]# kubectl config set-cluster kubernetes 
 > --certificate-authority=./ca.pem \
@@ -47,5 +48,18 @@ export BOOTSTRAP_TOKEN=$(head -c 16 /dev/urandom | od -An -t x | tr -d ' ')
 > --server=${KUBE_APISERVER} \
 > --kubeconfig=kube-proxy.kubeconfig
 ```
+## 设置客户端认证参数
 ```
+[root@k8s-master ssl]# kubectl config set-credentials kubelet-proxy --certificate-authority=./kube-proxy.pem --client-key=./kube-proxy-key.pem --embed-certs=true --kubeconfig=kube-proxy.kubeconfig 
+```
+## 设置上下文参数
+```
+[root@k8s-master ssl]# kubectl config set-context default \
+> --cluster=kubernetes \
+> --user=kube-proxy \
+> --kubeconfig=kube-proxy.kubeconfig 
+```
+## 设置默认上下文
+```
+[root@k8s-master ssl]# kubectl config use-context default --kubeconfig=kube-proxy.kubeconfig 
 ```
